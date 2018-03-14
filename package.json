@@ -1,0 +1,30 @@
+{
+  "name": "redux-promise-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casperlamboo/redux-promise-action.git"
+  },
+  "keywords": [
+    "redux",
+    "promise",
+    "actions",
+    "reducer",
+    "store",
+    "action"
+  ],
+  "author": "Casper Lamboo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/casperlamboo/redux-promise-action/issues"
+  },
+  "homepage": "https://github.com/casperlamboo/redux-promise-action#readme",
+  "dependencies": {
+    "proptypes": "^1.1.0"
+  }
+}
