@@ -21,12 +21,10 @@ const createPromiseAction = module.exports.createPromiseAction = function(promis
       return dispatch({
         type: actionType,
         payload: promise.apply(this, args).then(function(data) {
-          if (options && options.onSuccess) dispatch(onSuccess.apply(this, [data].concat(args)));
+          if (options && options.onSuccess) dispatch(options.onSuccess.apply(this, [data].concat(args)));
           return data;
         }).catch(function(error) {
-          if (options && options.onError) {
-            dispatch(onError.apply(this, [error].concat(args)));
-          }
+          if (options && options.onError) dispatch(options.onError.apply(this, [error].concat(args)));
           throw error;
         })
       });
