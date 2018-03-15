@@ -35,11 +35,13 @@ const createPromiseAction = module.exports.createPromiseAction = function(promis
 }
 
 const createPromiseReducer = module.exports.createPromiseReducer = function(actionType) {
-  const pendingActionType = `${actionType}_PENDING`;
-  const fulfilledActionType = `${actionType}_FULFILLED`;
-  const rejectedActionType = `${actionType}_REJECTED`;
+  const pendingActionType = actionType + '_PENDING';
+  const fulfilledActionType = actionType + '_FULFILLED';
+  const rejectedActionType = actionType + '_REJECTED';
 
-  return (state = initialState, action) => {
+  return function(state, action) {
+    if (!state) state = initialState;
+
     switch (action.type) {
       case pendingActionType:
         return {
