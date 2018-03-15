@@ -14,16 +14,19 @@ const initialState = module.exports.initialState = {
   data: null
 };
 
-const createPromiseAction = module.exports.createPromiseAction = function(promise, actionType, { onSuccess, onError } = {}) {
-  return (...args) => {
-    return (dispatch) => {
+const createPromiseAction = module.exports.createPromiseAction = function(promise, actionType, options) {
+  return function() {
+    const args = arguments;
+    return function(dispatch) {
       return dispatch({
         type: actionType,
-        payload: promise(...args).then((data) => {
-          if (onSuccess) dispatch(onSuccess(data, ...args));
+        payload: promise.apply(this, args).then(function(data) {
+          if (options && options.onSuccess) dispatch(onSuccess.apply(this, [data].concat(args)));
           return data;
-        }).catch((error) => {
-          if (onError) dispatch(onError(error, ...args))
+        }).catch(function(error) {
+          if (options && options.onError) {
+            dispatch(onError.apply(this, [error].concat(args)));
+          }
           throw error;
         })
       });
