@@ -16,7 +16,7 @@ const initialState = module.exports.initialState = {
 
 const createPromiseAction = module.exports.createPromiseAction = function(promise, actionType, options) {
   return function() {
-    const args = arguments;
+    const args = Array.from(arguments);
     return function(dispatch, getState) {
       args.push(dispatch, getState);
       return dispatch({
