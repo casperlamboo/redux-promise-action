@@ -17,7 +17,8 @@ const initialState = module.exports.initialState = {
 const createPromiseAction = module.exports.createPromiseAction = function(promise, actionType, options) {
   return function() {
     const args = arguments;
-    return function(dispatch) {
+    return function(dispatch, getState) {
+      args.push(dispatch, getState);
       return dispatch({
         type: actionType,
         payload: promise.apply(this, args).then(function(data) {
