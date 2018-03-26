@@ -18,7 +18,7 @@ const createPromiseAction = module.exports.createPromiseAction = function(promis
   return function() {
     const args = Array.from(arguments);
     return function(dispatch, getState) {
-      args.push(dispatch, getState);
+      args.unshift(dispatch, getState);
       return dispatch({
         type: actionType,
         payload: promise.apply(this, args).then(function(data) {
